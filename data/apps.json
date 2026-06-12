@@ -239,7 +239,6 @@
           "is_common": false,
           "icon_name": "bruno",
           "sources": {
-            "apt": "bruno",
             "flatpak": "com.usebruno.Bruno",
             "snap": "bruno"
           }

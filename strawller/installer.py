@@ -92,7 +92,9 @@ class InstallerService:
 
         snap_pkgs = batches.get("snap", {}).get("packages", [])
         if snap_pkgs:
-            cmd = ["pkexec", "snap", "install"] + snap_pkgs
+            # snap talks to snapd via socket; snapd runs as root and handles
+            # privilege elevation itself — wrapping with pkexec breaks it.
+            cmd = ["snap", "install"] + snap_pkgs
             jobs.append(InstallJob("Snap", cmd))
 
         return jobs
