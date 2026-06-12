@@ -275,6 +275,36 @@
           "sources": {
             "snap": "opencode"
           }
+        },
+        {
+          "id": "rdm",
+          "name": "Remote Desktop Manager",
+          "description": "Devolutions' all-in-one remote connection manager supporting RDP, SSH, VNC, and more.",
+          "is_common": false,
+          "sources": {
+            "apt": "remotedesktopmanager",
+            "snap": "remote-desktop-manager"
+          }
+        },
+        {
+          "id": "ollama",
+          "name": "Ollama",
+          "description": "Run large language models locally on your machine with a simple CLI and REST API.",
+          "is_common": false,
+          "sources": {
+            "apt": "ollama",
+            "snap": "ollama"
+          }
+        },
+        {
+          "id": "lm-studio",
+          "name": "LM Studio",
+          "description": "Desktop app for discovering, downloading, and running local LLMs with a chat UI.",
+          "is_common": false,
+          "sources": {
+            "flatpak": "ai.lmstudio.LMStudio",
+            "snap": "lmstudio"
+          }
         }
       ]
     },
@@ -397,6 +427,17 @@
           "sources": {
             "flatpak": "org.bixbite.Helium",
             "snap": "helium"
+          }
+        },
+        {
+          "id": "zen-browser",
+          "name": "Zen Browser",
+          "description": "Firefox-based privacy-focused browser with a beautiful sidebar-first UI.",
+          "is_common": false,
+          "icon_name": "zen-browser",
+          "sources": {
+            "flatpak": "io.github.zen_browser.zen",
+            "snap": "zen-browser"
           }
         }
       ]
@@ -596,6 +637,31 @@
             "pacman": "pinta",
             "flatpak": "com.github.PintaProject.Pinta",
             "snap": "pinta"
+          }
+        },
+        {
+          "id": "freecad",
+          "name": "FreeCAD",
+          "description": "Open source parametric 3D CAD modeller for product design and engineering.",
+          "is_common": false,
+          "icon_name": "freecad",
+          "sources": {
+            "apt": "freecad",
+            "dnf": "freecad",
+            "pacman": "freecad",
+            "flatpak": "org.freecadweb.FreeCAD",
+            "snap": "freecad"
+          }
+        },
+        {
+          "id": "spotify",
+          "name": "Spotify",
+          "description": "Music streaming service with millions of songs, podcasts, and playlists.",
+          "is_common": true,
+          "icon_name": "spotify",
+          "sources": {
+            "flatpak": "com.spotify.Client",
+            "snap": "spotify"
           }
         }
       ]
@@ -1153,6 +1219,102 @@
             "pacman": "cpu-x",
             "flatpak": "io.github.TheTumultuousUnicornOfDarkness.CPU-X"
           }
+        },
+        {
+          "id": "kitty",
+          "name": "Kitty",
+          "description": "Fast, feature-rich, GPU-accelerated terminal emulator with tiling and tabs.",
+          "is_common": false,
+          "icon_name": "kitty",
+          "sources": {
+            "apt": "kitty",
+            "dnf": "kitty",
+            "pacman": "kitty",
+            "flatpak": "net.kovidgoyal.kitty"
+          }
+        },
+        {
+          "id": "alacritty",
+          "name": "Alacritty",
+          "description": "Minimal, GPU-accelerated terminal emulator focused on performance.",
+          "is_common": false,
+          "icon_name": "alacritty",
+          "sources": {
+            "apt": "alacritty",
+            "dnf": "alacritty",
+            "pacman": "alacritty",
+            "flatpak": "org.alacritty.Alacritty",
+            "snap": "alacritty"
+          }
+        },
+        {
+          "id": "wezterm",
+          "name": "WezTerm",
+          "description": "GPU-accelerated terminal emulator and multiplexer with Lua config and SSH support.",
+          "is_common": false,
+          "icon_name": "wezterm",
+          "sources": {
+            "apt": "wezterm",
+            "pacman": "wezterm",
+            "flatpak": "org.wezfurlong.wezterm",
+            "snap": "wezterm"
+          }
+        },
+        {
+          "id": "ghostty",
+          "name": "Ghostty",
+          "description": "Fast, native terminal emulator with platform-native UI and rich feature set.",
+          "is_common": false,
+          "icon_name": "ghostty",
+          "sources": {
+            "apt": "ghostty",
+            "pacman": "ghostty",
+            "flatpak": "com.mitchellh.ghostty"
+          }
+        },
+        {
+          "id": "tilix",
+          "name": "Tilix",
+          "description": "Tiling terminal emulator for GNOME using GTK 3 with drag-and-drop panes.",
+          "is_common": false,
+          "sources": {
+            "apt": "tilix",
+            "dnf": "tilix",
+            "pacman": "tilix"
+          }
+        },
+        {
+          "id": "ulauncher",
+          "name": "Ulauncher",
+          "description": "Fast application launcher for Linux with extension support and fuzzy search.",
+          "is_common": false,
+          "icon_name": "ulauncher",
+          "sources": {
+            "apt": "ulauncher",
+            "flatpak": "io.ulauncher.Ulauncher"
+          }
+        },
+        {
+          "id": "albert",
+          "name": "Albert",
+          "description": "Keyboard-driven desktop agnostic launcher inspired by Alfred for macOS.",
+          "is_common": false,
+          "icon_name": "albert",
+          "sources": {
+            "apt": "albert",
+            "flatpak": "io.albertlauncher.Albert"
+          }
+        },
+        {
+          "id": "rofi",
+          "name": "Rofi",
+          "description": "Highly configurable window switcher, run dialog, and dmenu replacement.",
+          "is_common": false,
+          "sources": {
+            "apt": "rofi",
+            "dnf": "rofi",
+            "pacman": "rofi"
+          }
         }
       ]
     },
@@ -1160,6 +1322,18 @@
       "display_name": "Utilities & Security",
       "icon_name": "preferences-system-symbolic",
       "apps": [
+        {
+          "id": "keepass2",
+          "name": "KeePass 2",
+          "description": "Original KeePass password manager running on Linux via Mono.",
+          "is_common": false,
+          "sources": {
+            "apt": "keepass2",
+            "dnf": "keepass",
+            "pacman": "keepass",
+            "snap": "keepass2"
+          }
+        },
         {
           "id": "keepassxc",
           "name": "KeePassXC",
@@ -1272,6 +1446,16 @@
           }
         },
         {
+          "id": "nordvpn",
+          "name": "NordVPN",
+          "description": "Fast and secure VPN service with thousands of servers worldwide.",
+          "is_common": false,
+          "sources": {
+            "apt": "nordvpn",
+            "snap": "nordvpn"
+          }
+        },
+        {
           "id": "wireguard",
           "name": "WireGuard",
           "description": "Fast, modern, and secure VPN tunnel implementation.",
@@ -1292,6 +1476,18 @@
             "dnf": "barrier",
             "pacman": "barrier",
             "flatpak": "com.github.debauchee.barrier"
+          }
+        },
+        {
+          "id": "localsend",
+          "name": "LocalSend",
+          "description": "Open source alternative to AirDrop — share files across devices on your local network.",
+          "is_common": false,
+          "icon_name": "localsend",
+          "sources": {
+            "apt": "localsend",
+            "flatpak": "org.localsend.localsend_app",
+            "snap": "localsend"
           }
         },
         {
