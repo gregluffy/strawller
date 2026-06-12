@@ -14,7 +14,7 @@ Built with **Python 3.10+**, **GTK 4**, and **Libadwaita**.
 - **Polkit elevation** — uses `pkexec` for privilege separation; the GUI stays unprivileged
 - **Live terminal log** — real-time stdout/stderr streamed into the install dialog
 - **Export / Import profiles** — save your selections to JSON and restore them on another machine
-- **Search & sort** — filter by name/description; sort by Most Common, A–Z, or Star rating
+- **Search & sort** — filter by name/description; sort by Most Common or A–Z
 - **Responsive layout** — `Adw.NavigationSplitView` collapses the sidebar on narrow windows
 
 ### Categories
@@ -184,7 +184,7 @@ Open `data/apps.json` and add an entry to the relevant category's `apps` array:
   "id": "unique-id",
   "name": "Display Name",
   "description": "One-line description.",
-  "stars": 4.5,
+
   "is_common": false,
   "sources": {
     "apt":     "package-name",

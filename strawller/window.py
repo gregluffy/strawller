@@ -117,7 +117,6 @@ class StrawllerWindow(Adw.ApplicationWindow):
         sort_defs = [
             ("common", "Common"),
             ("alpha", "A–Z"),
-            ("stars", "★ Stars"),
         ]
         first = None
         for key, label in sort_defs:
@@ -135,7 +134,20 @@ class StrawllerWindow(Adw.ApplicationWindow):
         content_header.pack_end(sort_box)
         content_box.append(content_header)
 
-        # App grid
+        # Stack: loading spinner / app grid
+        self._content_stack = Gtk.Stack()
+        self._content_stack.set_vexpand(True)
+        self._content_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
+        self._content_stack.set_transition_duration(120)
+
+        loading_box = Gtk.Box()
+        loading_box.set_halign(Gtk.Align.CENTER)
+        loading_box.set_valign(Gtk.Align.CENTER)
+        spinner = Adw.Spinner()
+        spinner.set_size_request(48, 48)
+        loading_box.append(spinner)
+        self._content_stack.add_named(loading_box, "loading")
+
         grid_scroll = Gtk.ScrolledWindow()
         grid_scroll.set_vexpand(True)
         grid_scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -154,7 +166,9 @@ class StrawllerWindow(Adw.ApplicationWindow):
         self._flowbox.set_filter_func(self._filter_card)
 
         grid_scroll.set_child(self._flowbox)
-        content_box.append(grid_scroll)
+        self._content_stack.add_named(grid_scroll, "content")
+        self._content_stack.set_visible_child_name("content")
+        content_box.append(self._content_stack)
 
         # Action bar
         action_bar = Gtk.ActionBar()
@@ -184,10 +198,16 @@ class StrawllerWindow(Adw.ApplicationWindow):
 
     def _distro_banner_text(self) -> str:
         name = self._profile.get("pretty_name", "Unknown Linux")
-        pm = self._profile.get("pkg_manager") or "no native PM"
-        flatpak = " · Flatpak ✓" if self._profile.get("flatpak") else ""
-        snap = " · Snap ✓" if self._profile.get("snap") else ""
-        return f"{name}  [{pm}{flatpak}{snap}]"
+        pm = self._profile.get("pkg_manager")
+        sources = []
+        if pm:
+            sources.append(pm)
+        if self._profile.get("flatpak"):
+            sources.append("Flatpak")
+        if self._profile.get("snap"):
+            sources.append("Snap")
+        suffix = "  ·  " + " + ".join(sources) if sources else ""
+        return f"{name}{suffix}"
 
     def _build_category_row(self, cat: dict) -> Gtk.ListBoxRow:
         row = Gtk.ListBoxRow()
@@ -219,12 +239,19 @@ class StrawllerWindow(Adw.ApplicationWindow):
         return False  # remove idle callback
 
     def _populate_grid(self, category_id: str) -> None:
-        # Remove existing cards
-        while True:
-            child = self._flowbox.get_first_child()
-            if child is None:
-                break
+        self._content_stack.set_visible_child_name("loading")
+        GLib.idle_add(self._do_populate_grid, category_id)
+
+    def _do_populate_grid(self, category_id: str) -> bool:
+        if category_id != self._active_category_id:
+            self._content_stack.set_visible_child_name("content")
+            return False
+
+        child = self._flowbox.get_first_child()
+        while child is not None:
+            nxt = child.get_next_sibling()
             self._flowbox.remove(child)
+            child = nxt
         self._cards.clear()
 
         apps = get_apps_for_category(self._data, category_id)
@@ -234,7 +261,6 @@ class StrawllerWindow(Adw.ApplicationWindow):
             avail = self._engine.available_sources(app)
             source_type, _ = self._engine.resolve(app)
             card = AppCard(app, avail, source_type)
-            # Restore selection state if previously selected
             if app["id"] in self._selections:
                 card.set_selected(True)
             card.connect("toggled", self._on_card_toggled)
@@ -242,13 +268,13 @@ class StrawllerWindow(Adw.ApplicationWindow):
             self._cards.append(card)
 
         self._flowbox.invalidate_filter()
+        self._content_stack.set_visible_child_name("content")
+        return False
 
     def _sort_apps(self, apps: list[dict]) -> list[dict]:
         if self._sort_mode == "alpha":
             return sorted(apps, key=lambda a: a.get("name", "").lower())
-        if self._sort_mode == "stars":
-            return sorted(apps, key=lambda a: a.get("stars", 0.0), reverse=True)
-        # "common" — is_common first, then by name
+        # "common" — is_common first, then alphabetical
         return sorted(apps, key=lambda a: (not a.get("is_common", False), a.get("name", "").lower()))
 
     def _filter_card(self, child: Gtk.FlowBoxChild) -> bool:

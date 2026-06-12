@@ -2,13 +2,12 @@
   "categories": {
     "development": {
       "display_name": "Development & Engineering",
-      "icon_name": "developer-mode-symbolic",
+      "icon_name": "applications-development-symbolic",
       "apps": [
         {
           "id": "vscode",
           "name": "Visual Studio Code",
           "description": "Feature-rich code editor with IntelliSense, debugging, and Git integration.",
-          "stars": 4.7,
           "is_common": true,
           "sources": {
             "apt": "code",
@@ -22,7 +21,6 @@
           "id": "neovim",
           "name": "Neovim",
           "description": "Hyperextensible Vim-based text editor built for modern development workflows.",
-          "stars": 4.8,
           "is_common": true,
           "sources": {
             "apt": "neovim",
@@ -36,7 +34,6 @@
           "id": "git",
           "name": "Git",
           "description": "Distributed version control system for tracking source code changes.",
-          "stars": 4.9,
           "is_common": true,
           "sources": {
             "apt": "git",
@@ -48,7 +45,6 @@
           "id": "docker",
           "name": "Docker",
           "description": "Platform for developing, shipping, and running applications in containers.",
-          "stars": 4.6,
           "is_common": true,
           "sources": {
             "apt": "docker.io",
@@ -62,7 +58,6 @@
           "id": "postman",
           "name": "Postman",
           "description": "API platform for building and testing RESTful and GraphQL services.",
-          "stars": 4.5,
           "is_common": true,
           "sources": {
             "flatpak": "com.getpostman.Postman",
@@ -73,7 +68,6 @@
           "id": "jetbrains-toolbox",
           "name": "JetBrains Toolbox",
           "description": "Manage all JetBrains IDEs and keep them up to date from one place.",
-          "stars": 4.6,
           "is_common": false,
           "sources": {
             "flatpak": "com.jetbrains.Toolbox",
@@ -84,7 +78,6 @@
           "id": "nodejs",
           "name": "Node.js",
           "description": "JavaScript runtime built on V8 for building scalable network applications.",
-          "stars": 4.6,
           "is_common": true,
           "sources": {
             "apt": "nodejs",
@@ -97,7 +90,6 @@
           "id": "rust",
           "name": "Rust (rustup)",
           "description": "Systems programming language focused on safety, speed, and concurrency.",
-          "stars": 4.8,
           "is_common": false,
           "sources": {
             "apt": "rustup",
@@ -109,7 +101,6 @@
           "id": "golang",
           "name": "Go",
           "description": "Open source programming language that makes it easy to build reliable software.",
-          "stars": 4.6,
           "is_common": false,
           "sources": {
             "apt": "golang",
@@ -122,7 +113,6 @@
           "id": "gcc",
           "name": "GCC",
           "description": "GNU Compiler Collection supporting C, C++, Fortran, and more.",
-          "stars": 4.7,
           "is_common": true,
           "sources": {
             "apt": "gcc",
@@ -134,7 +124,6 @@
           "id": "cmake",
           "name": "CMake",
           "description": "Cross-platform build system generator for C/C++ projects.",
-          "stars": 4.5,
           "is_common": true,
           "sources": {
             "apt": "cmake",
@@ -147,7 +136,6 @@
           "id": "gh-cli",
           "name": "GitHub CLI",
           "description": "GitHub's official command-line interface for managing repos, PRs, and issues.",
-          "stars": 4.7,
           "is_common": true,
           "sources": {
             "apt": "gh",
@@ -160,7 +148,6 @@
           "id": "meld",
           "name": "Meld",
           "description": "Visual diff and merge tool for comparing files, directories, and Git repos.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "apt": "meld",
@@ -173,7 +160,6 @@
           "id": "dbeaver",
           "name": "DBeaver",
           "description": "Universal database tool supporting MySQL, PostgreSQL, SQLite, MongoDB, and more.",
-          "stars": 4.5,
           "is_common": false,
           "sources": {
             "apt": "dbeaver-ce",
@@ -185,7 +171,6 @@
           "id": "android-studio",
           "name": "Android Studio",
           "description": "Official IDE for Android app development based on IntelliJ IDEA.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "flatpak": "com.google.AndroidStudio",
@@ -196,7 +181,6 @@
           "id": "python3",
           "name": "Python 3",
           "description": "Widely used high-level general-purpose programming language.",
-          "stars": 4.9,
           "is_common": true,
           "sources": {
             "apt": "python3",
@@ -208,7 +192,6 @@
           "id": "vim",
           "name": "Vim",
           "description": "Highly configurable terminal text editor for efficient text editing.",
-          "stars": 4.6,
           "is_common": true,
           "sources": {
             "apt": "vim",
@@ -220,7 +203,6 @@
           "id": "make",
           "name": "Make",
           "description": "Build automation tool that reads Makefiles to compile and link programs.",
-          "stars": 4.5,
           "is_common": true,
           "sources": {
             "apt": "make",
@@ -232,7 +214,6 @@
           "id": "insomnia",
           "name": "Insomnia",
           "description": "Open-source API client for REST, GraphQL, gRPC, and WebSocket testing.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "flatpak": "rest.insomnia.Insomnia",
@@ -243,13 +224,56 @@
           "id": "lazygit",
           "name": "Lazygit",
           "description": "Simple terminal UI for git commands with a clean interface.",
-          "stars": 4.8,
           "is_common": false,
           "sources": {
             "apt": "lazygit",
             "dnf": "lazygit",
             "pacman": "lazygit",
             "snap": "lazygit"
+          }
+        },
+        {
+          "id": "bruno",
+          "name": "Bruno",
+          "description": "Open source API client for exploring and testing APIs, stored as plain files in your repo.",
+          "is_common": false,
+          "icon_name": "bruno",
+          "sources": {
+            "apt": "bruno",
+            "flatpak": "com.usebruno.Bruno",
+            "snap": "bruno"
+          }
+        },
+        {
+          "id": "zed",
+          "name": "Zed",
+          "description": "High-performance multiplayer code editor built in Rust by the creators of Atom.",
+          "is_common": false,
+          "icon_name": "zed",
+          "sources": {
+            "apt": "zed",
+            "flatpak": "dev.zed.Zed",
+            "snap": "zed"
+          }
+        },
+        {
+          "id": "cursor",
+          "name": "Cursor",
+          "description": "AI-first code editor built on VS Code with deep AI pair-programming integration.",
+          "is_common": false,
+          "icon_name": "cursor",
+          "sources": {
+            "flatpak": "com.cursor.Cursor",
+            "snap": "cursor"
+          }
+        },
+        {
+          "id": "opencode",
+          "name": "OpenCode",
+          "description": "Open source AI coding agent that runs in the terminal.",
+          "is_common": false,
+          "sources": {
+            "snap": "opencode"
           }
         }
       ]
@@ -262,8 +286,8 @@
           "id": "firefox",
           "name": "Firefox",
           "description": "Fast, private, and secure browser from Mozilla.",
-          "stars": 4.6,
           "is_common": true,
+          "icon_name": "firefox",
           "sources": {
             "apt": "firefox",
             "dnf": "firefox",
@@ -276,8 +300,8 @@
           "id": "chromium",
           "name": "Chromium",
           "description": "Open-source browser project that forms the basis of Chrome.",
-          "stars": 4.4,
           "is_common": true,
+          "icon_name": "chromium-browser",
           "sources": {
             "apt": "chromium-browser",
             "dnf": "chromium",
@@ -290,7 +314,6 @@
           "id": "brave",
           "name": "Brave",
           "description": "Privacy-focused browser with built-in ad and tracker blocking.",
-          "stars": 4.5,
           "is_common": true,
           "sources": {
             "apt": "brave-browser",
@@ -302,7 +325,6 @@
           "id": "librewolf",
           "name": "LibreWolf",
           "description": "Privacy-hardened Firefox fork with enhanced security defaults.",
-          "stars": 4.5,
           "is_common": false,
           "sources": {
             "apt": "librewolf",
@@ -314,7 +336,6 @@
           "id": "vivaldi",
           "name": "Vivaldi",
           "description": "Feature-rich customisable browser built for power users.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "apt": "vivaldi-stable",
@@ -326,7 +347,6 @@
           "id": "opera",
           "name": "Opera",
           "description": "Browser with built-in VPN, ad blocker, and social integrations.",
-          "stars": 4.1,
           "is_common": false,
           "sources": {
             "apt": "opera-stable",
@@ -338,7 +358,6 @@
           "id": "tor-browser",
           "name": "Tor Browser",
           "description": "Anonymous browser that routes traffic through the Tor network.",
-          "stars": 4.3,
           "is_common": false,
           "sources": {
             "apt": "torbrowser-launcher",
@@ -350,13 +369,34 @@
           "id": "falkon",
           "name": "Falkon",
           "description": "Lightweight Qt-based web browser using QtWebEngine.",
-          "stars": 3.9,
           "is_common": false,
           "sources": {
             "apt": "falkon",
             "dnf": "falkon",
             "pacman": "falkon",
             "flatpak": "org.kde.falkon"
+          }
+        },
+        {
+          "id": "chrome",
+          "name": "Google Chrome",
+          "description": "Fast web browser from Google with deep Google services integration.",
+          "is_common": true,
+          "icon_name": "google-chrome",
+          "sources": {
+            "apt": "google-chrome-stable",
+            "flatpak": "com.google.Chrome",
+            "snap": "google-chrome"
+          }
+        },
+        {
+          "id": "helium",
+          "name": "Helium",
+          "description": "Lightweight privacy-respecting browser with a minimal interface.",
+          "is_common": false,
+          "sources": {
+            "flatpak": "org.bixbite.Helium",
+            "snap": "helium"
           }
         }
       ]
@@ -369,8 +409,8 @@
           "id": "vlc",
           "name": "VLC Media Player",
           "description": "Free and open source cross-platform multimedia player and framework.",
-          "stars": 4.9,
           "is_common": true,
+          "icon_name": "vlc",
           "sources": {
             "apt": "vlc",
             "dnf": "vlc",
@@ -383,7 +423,6 @@
           "id": "celluloid",
           "name": "Celluloid",
           "description": "Simple GTK frontend for the mpv media player.",
-          "stars": 4.3,
           "is_common": false,
           "sources": {
             "apt": "celluloid",
@@ -396,7 +435,6 @@
           "id": "kdenlive",
           "name": "Kdenlive",
           "description": "Free and open source non-linear video editor based on MLT Framework.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "apt": "kdenlive",
@@ -409,8 +447,8 @@
           "id": "obs-studio",
           "name": "OBS Studio",
           "description": "Free and open source software for video recording and live streaming.",
-          "stars": 4.8,
           "is_common": true,
+          "icon_name": "obs",
           "sources": {
             "apt": "obs-studio",
             "dnf": "obs-studio",
@@ -423,7 +461,6 @@
           "id": "audacity",
           "name": "Audacity",
           "description": "Easy-to-use multi-track audio editor and recorder.",
-          "stars": 4.5,
           "is_common": true,
           "sources": {
             "apt": "audacity",
@@ -436,9 +473,9 @@
         {
           "id": "gimp",
           "name": "GIMP",
-          "description": "GNU Image Manipulation Program — powerful raster graphics editor.",
-          "stars": 4.5,
+          "description": "GNU Image Manipulation Program \u00e2\u20ac\u201d powerful raster graphics editor.",
           "is_common": true,
+          "icon_name": "gimp",
           "sources": {
             "apt": "gimp",
             "dnf": "gimp",
@@ -451,7 +488,6 @@
           "id": "inkscape",
           "name": "Inkscape",
           "description": "Professional vector graphics editor using the SVG format.",
-          "stars": 4.5,
           "is_common": true,
           "sources": {
             "apt": "inkscape",
@@ -465,8 +501,8 @@
           "id": "blender",
           "name": "Blender",
           "description": "Free and open source 3D creation suite for modelling, animation, and rendering.",
-          "stars": 4.9,
           "is_common": true,
+          "icon_name": "blender",
           "sources": {
             "apt": "blender",
             "dnf": "blender",
@@ -479,7 +515,6 @@
           "id": "krita",
           "name": "Krita",
           "description": "Professional digital painting application for illustrators and concept artists.",
-          "stars": 4.7,
           "is_common": false,
           "sources": {
             "apt": "krita",
@@ -493,7 +528,6 @@
           "id": "darktable",
           "name": "Darktable",
           "description": "Open source photography workflow and non-destructive raw developer.",
-          "stars": 4.5,
           "is_common": false,
           "sources": {
             "apt": "darktable",
@@ -506,7 +540,6 @@
           "id": "handbrake",
           "name": "HandBrake",
           "description": "Open source video transcoder for converting video to almost any format.",
-          "stars": 4.6,
           "is_common": true,
           "sources": {
             "apt": "handbrake",
@@ -519,7 +552,6 @@
           "id": "rhythmbox",
           "name": "Rhythmbox",
           "description": "Music playback and management application for GNOME.",
-          "stars": 4.1,
           "is_common": false,
           "sources": {
             "apt": "rhythmbox",
@@ -532,7 +564,6 @@
           "id": "shotcut",
           "name": "Shotcut",
           "description": "Free, open source, cross-platform video editor.",
-          "stars": 4.3,
           "is_common": false,
           "sources": {
             "apt": "shotcut",
@@ -546,7 +577,6 @@
           "id": "pitivi",
           "name": "Pitivi",
           "description": "Non-linear video editor integrating tightly with GNOME.",
-          "stars": 3.9,
           "is_common": false,
           "sources": {
             "apt": "pitivi",
@@ -559,7 +589,6 @@
           "id": "pinta",
           "name": "Pinta",
           "description": "Simple drawing and image editing program inspired by Paint.NET.",
-          "stars": 4.0,
           "is_common": false,
           "sources": {
             "apt": "pinta",
@@ -573,13 +602,12 @@
     },
     "productivity": {
       "display_name": "Productivity & Office",
-      "icon_name": "org.gnome.Documents-symbolic",
+      "icon_name": "applications-office-symbolic",
       "apps": [
         {
           "id": "libreoffice",
           "name": "LibreOffice",
           "description": "Powerful open-source office suite with Writer, Calc, Impress, and more.",
-          "stars": 4.5,
           "is_common": true,
           "sources": {
             "apt": "libreoffice",
@@ -593,7 +621,6 @@
           "id": "onlyoffice",
           "name": "ONLYOFFICE",
           "description": "Office suite with high compatibility with Microsoft Office formats.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "apt": "onlyoffice-desktopeditors",
@@ -605,7 +632,6 @@
           "id": "thunderbird",
           "name": "Thunderbird",
           "description": "Free email client from Mozilla with calendar and task management.",
-          "stars": 4.4,
           "is_common": true,
           "sources": {
             "apt": "thunderbird",
@@ -619,7 +645,6 @@
           "id": "evolution",
           "name": "Evolution",
           "description": "GNOME personal information manager with email, calendar, and contacts.",
-          "stars": 4.1,
           "is_common": false,
           "sources": {
             "apt": "evolution",
@@ -632,7 +657,6 @@
           "id": "obsidian",
           "name": "Obsidian",
           "description": "Knowledge base and note-taking app that works on top of local Markdown files.",
-          "stars": 4.8,
           "is_common": true,
           "sources": {
             "flatpak": "md.obsidian.Obsidian",
@@ -643,7 +667,6 @@
           "id": "zotero",
           "name": "Zotero",
           "description": "Free, open-source tool to help collect, organise, and cite research sources.",
-          "stars": 4.6,
           "is_common": false,
           "sources": {
             "flatpak": "org.zotero.Zotero",
@@ -654,7 +677,6 @@
           "id": "joplin",
           "name": "Joplin",
           "description": "Open source note-taking app with end-to-end encryption and sync.",
-          "stars": 4.5,
           "is_common": false,
           "sources": {
             "flatpak": "net.cozic.joplin_desktop",
@@ -662,24 +684,9 @@
           }
         },
         {
-          "id": "nextcloud-desktop",
-          "name": "Nextcloud Desktop",
-          "description": "Desktop sync client for Nextcloud servers.",
-          "stars": 4.3,
-          "is_common": false,
-          "sources": {
-            "apt": "nextcloud-desktop",
-            "dnf": "nextcloud-client",
-            "pacman": "nextcloud-client",
-            "flatpak": "com.nextcloud.desktopclient.nextcloud",
-            "snap": "nextcloud-desktop-client"
-          }
-        },
-        {
           "id": "calibre",
           "name": "Calibre",
           "description": "Powerful and easy to use e-book manager and converter.",
-          "stars": 4.6,
           "is_common": false,
           "sources": {
             "apt": "calibre",
@@ -693,7 +700,6 @@
           "id": "pdfarranger",
           "name": "PDF Arranger",
           "description": "Merge, split, rotate, and rearrange PDF documents with a simple GUI.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "apt": "pdfarranger",
@@ -706,7 +712,6 @@
           "id": "standard-notes",
           "name": "Standard Notes",
           "description": "End-to-end encrypted notes app focused on longevity and privacy.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "flatpak": "org.standardnotes.standardnotes",
@@ -717,7 +722,6 @@
           "id": "logseq",
           "name": "Logseq",
           "description": "Privacy-first knowledge management and note-taking platform.",
-          "stars": 4.6,
           "is_common": false,
           "sources": {
             "flatpak": "com.logseq.Logseq"
@@ -727,14 +731,14 @@
     },
     "communication": {
       "display_name": "Communication & Chat",
-      "icon_name": "chat-symbolic",
+      "icon_name": "mail-send-symbolic",
       "apps": [
         {
           "id": "discord",
           "name": "Discord",
           "description": "Voice, video, and text communication platform for communities.",
-          "stars": 4.5,
           "is_common": true,
+          "icon_name": "discord",
           "sources": {
             "apt": "discord",
             "flatpak": "com.discordapp.Discord",
@@ -745,7 +749,6 @@
           "id": "slack",
           "name": "Slack",
           "description": "Team messaging and collaboration platform for the workplace.",
-          "stars": 4.3,
           "is_common": true,
           "sources": {
             "apt": "slack-desktop",
@@ -757,8 +760,8 @@
           "id": "signal",
           "name": "Signal",
           "description": "Private, end-to-end encrypted messenger for individuals and groups.",
-          "stars": 4.7,
           "is_common": true,
+          "icon_name": "signal-desktop",
           "sources": {
             "apt": "signal-desktop",
             "flatpak": "org.signal.Signal",
@@ -769,8 +772,8 @@
           "id": "telegram",
           "name": "Telegram",
           "description": "Fast and secure messaging app with support for large groups and channels.",
-          "stars": 4.6,
           "is_common": true,
+          "icon_name": "telegram-desktop",
           "sources": {
             "apt": "telegram-desktop",
             "dnf": "telegram-desktop",
@@ -783,7 +786,6 @@
           "id": "element",
           "name": "Element",
           "description": "Secure decentralised communication client based on the Matrix protocol.",
-          "stars": 4.3,
           "is_common": false,
           "sources": {
             "apt": "element-desktop",
@@ -795,7 +797,6 @@
           "id": "zoom",
           "name": "Zoom",
           "description": "Video conferencing and online meeting platform.",
-          "stars": 4.0,
           "is_common": true,
           "sources": {
             "apt": "zoom",
@@ -807,7 +808,6 @@
           "id": "msteams",
           "name": "Microsoft Teams",
           "description": "Collaboration platform combining workplace chat, video meetings, and file storage.",
-          "stars": 3.9,
           "is_common": true,
           "sources": {
             "flatpak": "com.microsoft.Teams",
@@ -815,22 +815,29 @@
           }
         },
         {
-          "id": "skype",
-          "name": "Skype",
-          "description": "Video calling and instant messaging application from Microsoft.",
-          "stars": 3.7,
+          "id": "whatsapp",
+          "name": "WhatsApp",
+          "description": "Unofficial WhatsApp desktop client for Linux with full messaging support.",
+          "is_common": true,
+          "sources": {
+            "flatpak": "io.github.mimbrero.WhatsAppDesktop",
+            "snap": "whatsapp-for-linux"
+          }
+        },
+        {
+          "id": "viber",
+          "name": "Viber",
+          "description": "Free messaging and HD calling app available across all your devices.",
           "is_common": false,
           "sources": {
-            "apt": "skypeforlinux",
-            "flatpak": "com.skype.Client",
-            "snap": "skype"
+            "apt": "viber",
+            "snap": "viber"
           }
         },
         {
           "id": "fractal",
           "name": "Fractal",
           "description": "GNOME Matrix messaging client with a clean, modern interface.",
-          "stars": 4.1,
           "is_common": false,
           "sources": {
             "apt": "fractal",
@@ -843,7 +850,6 @@
           "id": "hexchat",
           "name": "HexChat",
           "description": "Free, open source IRC client based on XChat.",
-          "stars": 4.0,
           "is_common": false,
           "sources": {
             "apt": "hexchat",
@@ -862,8 +868,8 @@
           "id": "steam",
           "name": "Steam",
           "description": "Valve's digital distribution platform with thousands of Linux-compatible games.",
-          "stars": 4.7,
           "is_common": true,
+          "icon_name": "steam",
           "sources": {
             "apt": "steam",
             "dnf": "steam",
@@ -876,7 +882,6 @@
           "id": "lutris",
           "name": "Lutris",
           "description": "Open gaming platform for Linux supporting Wine, emulators, and native titles.",
-          "stars": 4.5,
           "is_common": true,
           "sources": {
             "apt": "lutris",
@@ -889,7 +894,6 @@
           "id": "heroic",
           "name": "Heroic Games Launcher",
           "description": "Open source Epic Games and GOG launcher with Wine/Proton support.",
-          "stars": 4.6,
           "is_common": false,
           "sources": {
             "apt": "heroic",
@@ -900,7 +904,6 @@
           "id": "gamemode",
           "name": "GameMode",
           "description": "Daemon/library combo that optimises Linux system performance while gaming.",
-          "stars": 4.5,
           "is_common": false,
           "sources": {
             "apt": "gamemode",
@@ -912,7 +915,6 @@
           "id": "mangohud",
           "name": "MangoHud",
           "description": "Vulkan and OpenGL overlay for monitoring FPS, temperatures, and GPU usage.",
-          "stars": 4.6,
           "is_common": false,
           "sources": {
             "apt": "mangohud",
@@ -925,7 +927,6 @@
           "id": "wine",
           "name": "Wine",
           "description": "Compatibility layer capable of running Windows applications on Linux.",
-          "stars": 4.3,
           "is_common": true,
           "sources": {
             "apt": "wine",
@@ -937,7 +938,6 @@
           "id": "protonup-qt",
           "name": "ProtonUp-Qt",
           "description": "GUI tool for managing Proton-GE and Wine-GE versions for Steam and Lutris.",
-          "stars": 4.7,
           "is_common": false,
           "sources": {
             "flatpak": "net.davidotek.pupgui2",
@@ -948,7 +948,6 @@
           "id": "bottles",
           "name": "Bottles",
           "description": "Manage Windows software and games on Linux with WINE environments.",
-          "stars": 4.5,
           "is_common": false,
           "sources": {
             "flatpak": "com.usebottles.bottles"
@@ -958,7 +957,6 @@
           "id": "retroarch",
           "name": "RetroArch",
           "description": "Cross-platform frontend for emulators using the libretro API.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "apt": "retroarch",
@@ -972,7 +970,6 @@
           "id": "minigalaxy",
           "name": "Minigalaxy",
           "description": "Minimal GOG client for Linux.",
-          "stars": 4.1,
           "is_common": false,
           "sources": {
             "apt": "minigalaxy",
@@ -989,7 +986,6 @@
           "id": "htop",
           "name": "Htop",
           "description": "Interactive process viewer for Unix systems with a colourful terminal UI.",
-          "stars": 4.8,
           "is_common": true,
           "sources": {
             "apt": "htop",
@@ -1003,7 +999,6 @@
           "id": "btop",
           "name": "Btop",
           "description": "Beautiful terminal resource monitor showing CPU, RAM, disks, and network.",
-          "stars": 4.9,
           "is_common": true,
           "sources": {
             "apt": "btop",
@@ -1016,7 +1011,6 @@
           "id": "gnome-tweaks",
           "name": "GNOME Tweaks",
           "description": "Advanced settings panel for GNOME desktop customisation.",
-          "stars": 4.5,
           "is_common": true,
           "sources": {
             "apt": "gnome-tweaks",
@@ -1029,7 +1023,6 @@
           "id": "extension-manager",
           "name": "Extension Manager",
           "description": "Browse and manage GNOME Shell extensions without a browser.",
-          "stars": 4.6,
           "is_common": true,
           "sources": {
             "apt": "gnome-shell-extension-manager",
@@ -1040,7 +1033,6 @@
           "id": "timeshift",
           "name": "Timeshift",
           "description": "System restore tool for Linux using rsync and btrfs snapshots.",
-          "stars": 4.7,
           "is_common": true,
           "sources": {
             "apt": "timeshift",
@@ -1053,7 +1045,6 @@
           "id": "bleachbit",
           "name": "BleachBit",
           "description": "Disk space cleaner and privacy manager that frees cache, temp files, and logs.",
-          "stars": 4.3,
           "is_common": false,
           "sources": {
             "apt": "bleachbit",
@@ -1066,7 +1057,6 @@
           "id": "gparted",
           "name": "GParted",
           "description": "Graphical partition editor for creating, resizing, and managing disk partitions.",
-          "stars": 4.6,
           "is_common": true,
           "sources": {
             "apt": "gparted",
@@ -1079,7 +1069,6 @@
           "id": "baobab",
           "name": "Disk Usage Analyzer",
           "description": "GNOME tool for graphically visualising disk space usage.",
-          "stars": 4.3,
           "is_common": false,
           "sources": {
             "apt": "baobab",
@@ -1092,7 +1081,6 @@
           "id": "flatseal",
           "name": "Flatseal",
           "description": "Graphical utility to manage Flatpak application permissions.",
-          "stars": 4.6,
           "is_common": true,
           "sources": {
             "flatpak": "com.github.tchx84.Flatseal"
@@ -1102,7 +1090,6 @@
           "id": "ventoy",
           "name": "Ventoy",
           "description": "Tool for creating bootable USB drives that support multiple ISO files.",
-          "stars": 4.8,
           "is_common": false,
           "sources": {
             "apt": "ventoy",
@@ -1114,7 +1101,6 @@
           "id": "stacer",
           "name": "Stacer",
           "description": "Linux system optimiser and monitor with a modern Material Design interface.",
-          "stars": 4.2,
           "is_common": false,
           "sources": {
             "apt": "stacer",
@@ -1126,7 +1112,6 @@
           "id": "ufw-gufw",
           "name": "Gufw",
           "description": "Graphical front-end for the Uncomplicated Firewall (UFW).",
-          "stars": 4.2,
           "is_common": false,
           "sources": {
             "apt": "gufw",
@@ -1138,7 +1123,6 @@
           "id": "nemo",
           "name": "Nemo",
           "description": "File manager for the Cinnamon desktop with dual-pane and extension support.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "apt": "nemo",
@@ -1150,7 +1134,6 @@
           "id": "dconf-editor",
           "name": "Dconf Editor",
           "description": "Graphical editor for the dconf configuration database.",
-          "stars": 4.1,
           "is_common": false,
           "sources": {
             "apt": "dconf-editor",
@@ -1163,7 +1146,6 @@
           "id": "cpu-x",
           "name": "CPU-X",
           "description": "CPU, motherboard, and system information tool similar to CPU-Z for Windows.",
-          "stars": 4.3,
           "is_common": false,
           "sources": {
             "apt": "cpu-x",
@@ -1182,7 +1164,6 @@
           "id": "keepassxc",
           "name": "KeePassXC",
           "description": "Cross-platform password manager with strong encryption and browser integration.",
-          "stars": 4.8,
           "is_common": true,
           "sources": {
             "apt": "keepassxc",
@@ -1196,7 +1177,6 @@
           "id": "bitwarden",
           "name": "Bitwarden",
           "description": "Open source password manager with cloud sync and browser extensions.",
-          "stars": 4.7,
           "is_common": true,
           "sources": {
             "flatpak": "com.bitwarden.desktop",
@@ -1207,7 +1187,6 @@
           "id": "virtualbox",
           "name": "VirtualBox",
           "description": "Powerful x86 and AMD64/Intel64 virtualisation product.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "apt": "virtualbox",
@@ -1220,7 +1199,6 @@
           "id": "gnome-boxes",
           "name": "GNOME Boxes",
           "description": "Simple virtual machine manager and remote desktop client for GNOME.",
-          "stars": 4.2,
           "is_common": false,
           "sources": {
             "apt": "gnome-boxes",
@@ -1233,7 +1211,6 @@
           "id": "remmina",
           "name": "Remmina",
           "description": "Feature-rich remote desktop client supporting RDP, VNC, SSH, and SFTP.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "apt": "remmina",
@@ -1247,7 +1224,6 @@
           "id": "flameshot",
           "name": "Flameshot",
           "description": "Powerful yet simple screenshot tool with annotations and screen recording.",
-          "stars": 4.6,
           "is_common": true,
           "sources": {
             "apt": "flameshot",
@@ -1261,7 +1237,6 @@
           "id": "peek",
           "name": "Peek",
           "description": "Screen recorder that creates GIF animations from a selected area.",
-          "stars": 4.3,
           "is_common": false,
           "sources": {
             "apt": "peek",
@@ -1274,7 +1249,6 @@
           "id": "copyq",
           "name": "CopyQ",
           "description": "Clipboard manager with advanced features including script commands.",
-          "stars": 4.5,
           "is_common": false,
           "sources": {
             "apt": "copyq",
@@ -1288,7 +1262,6 @@
           "id": "qbittorrent",
           "name": "qBittorrent",
           "description": "Free and open source BitTorrent client with a web interface.",
-          "stars": 4.7,
           "is_common": true,
           "sources": {
             "apt": "qbittorrent",
@@ -1302,7 +1275,6 @@
           "id": "wireguard",
           "name": "WireGuard",
           "description": "Fast, modern, and secure VPN tunnel implementation.",
-          "stars": 4.7,
           "is_common": false,
           "sources": {
             "apt": "wireguard",
@@ -1314,7 +1286,6 @@
           "id": "barrier",
           "name": "Barrier",
           "description": "Software KVM switch for sharing keyboard and mouse across computers.",
-          "stars": 4.2,
           "is_common": false,
           "sources": {
             "apt": "barrier",
@@ -1327,7 +1298,6 @@
           "id": "font-manager",
           "name": "Font Manager",
           "description": "Simple font management application for GNOME.",
-          "stars": 4.0,
           "is_common": false,
           "sources": {
             "apt": "font-manager",
@@ -1340,7 +1310,6 @@
           "id": "gnome-clocks",
           "name": "GNOME Clocks",
           "description": "Clock, alarm, stopwatch, and timer app for GNOME.",
-          "stars": 4.1,
           "is_common": false,
           "sources": {
             "apt": "gnome-clocks",
@@ -1356,10 +1325,22 @@
       "icon_name": "network-server-symbolic",
       "apps": [
         {
+          "id": "nextcloud-desktop",
+          "name": "Nextcloud Desktop",
+          "description": "Desktop sync client to keep your files in sync with your own Nextcloud server.",
+          "is_common": false,
+          "sources": {
+            "apt": "nextcloud-desktop",
+            "dnf": "nextcloud-client",
+            "pacman": "nextcloud-client",
+            "flatpak": "com.nextcloud.desktopclient.nextcloud",
+            "snap": "nextcloud-desktop-client"
+          }
+        },
+        {
           "id": "dropbox",
           "name": "Dropbox",
           "description": "Cloud file storage and sync service with desktop integration.",
-          "stars": 4.1,
           "is_common": true,
           "sources": {
             "apt": "dropbox",
@@ -1371,7 +1352,6 @@
           "id": "mega",
           "name": "MEGA",
           "description": "End-to-end encrypted cloud storage with a generous free tier.",
-          "stars": 4.3,
           "is_common": false,
           "sources": {
             "apt": "megasync",
@@ -1383,7 +1363,6 @@
           "id": "pcloud",
           "name": "pCloud",
           "description": "Secure cloud storage with lifetime plans and virtual drive mounting.",
-          "stars": 4.2,
           "is_common": false,
           "sources": {
             "flatpak": "com.pcloud.pcloud",
@@ -1394,7 +1373,6 @@
           "id": "rclone",
           "name": "rclone",
           "description": "Command-line program for managing files on cloud storage services.",
-          "stars": 4.7,
           "is_common": false,
           "sources": {
             "apt": "rclone",
@@ -1407,7 +1385,6 @@
           "id": "syncthing",
           "name": "Syncthing",
           "description": "Continuous file synchronisation program between devices without a central server.",
-          "stars": 4.8,
           "is_common": false,
           "sources": {
             "apt": "syncthing",
@@ -1421,7 +1398,6 @@
           "id": "restic",
           "name": "Restic",
           "description": "Fast, secure, and efficient backup program supporting many storage backends.",
-          "stars": 4.7,
           "is_common": false,
           "sources": {
             "apt": "restic",
@@ -1434,7 +1410,6 @@
           "id": "freefilesync",
           "name": "FreeFileSync",
           "description": "Folder comparison and synchronisation tool for backups.",
-          "stars": 4.4,
           "is_common": false,
           "sources": {
             "flatpak": "org.freefilesync.FreeFileSync"
@@ -1444,7 +1419,6 @@
           "id": "insync",
           "name": "Insync",
           "description": "Desktop sync client for Google Drive and OneDrive on Linux.",
-          "stars": 4.2,
           "is_common": false,
           "sources": {
             "apt": "insync",

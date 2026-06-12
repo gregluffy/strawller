@@ -5,17 +5,30 @@ from __future__ import annotations
 import gi
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Gtk, GObject
+from gi.repository import Gtk, Adw, GObject
+
+_SOURCE_LABEL = {"flatpak": "Flatpak", "native": "Native", "snap": "Snap"}
 
 
-def _star_string(rating: float) -> str:
-    full = int(round(rating))
-    full = max(0, min(5, full))
-    return "★" * full + "☆" * (5 - full) + f"  {rating:.1f}"
+def _resolve_icon(app: dict) -> str | None:
+    """Return best icon name to try, or None to let Avatar show initials."""
+    explicit = app.get("icon_name")
+    if explicit:
+        return explicit
+    sources = app.get("sources", {})
+    for key in ("apt", "dnf", "pacman"):
+        pkg = sources.get(key, "")
+        if pkg:
+            return pkg
+    return None
 
 
 class AppCard(Gtk.Box):
-    """Card widget representing a single installable application.
+    """Application card with avatar, info column, source pills, and install toggle.
+
+    Layout:
+        [Avatar] | Name / Stars / Desc / Source pills  |  [Source ▾]
+                                                           [Add to install]
 
     Emits::
         toggled(app_id: str, source_type: str, active: bool)
@@ -31,11 +44,12 @@ class AppCard(Gtk.Box):
         available_sources: list[tuple[str, str]],
         default_source: str | None,
     ):
-        super().__init__(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
+        super().__init__(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         self._app = app
         self._available_sources = available_sources
-        self._selected = False
         self._current_source = default_source
+        self._source_dropdown_keys: list[str] = []
+        self._dropdown: Gtk.DropDown | None = None
 
         self.add_css_class("card")
         self.set_margin_top(4)
@@ -43,96 +57,111 @@ class AppCard(Gtk.Box):
         self.set_margin_start(4)
         self.set_margin_end(4)
 
-        # --- Icon ---
-        icon = Gtk.Image.new_from_icon_name(
-            app.get("icon_name", "application-x-executable-symbolic")
-        )
-        icon.set_icon_size(Gtk.IconSize.LARGE)
-        icon.set_pixel_size(48)
-        icon.set_valign(Gtk.Align.CENTER)
-        icon.set_margin_start(8)
-        self.append(icon)
+        # ── Left: avatar + info ──────────────────────────────────────
+        left = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
+        left.set_hexpand(True)
+        left.set_margin_top(12)
+        left.set_margin_bottom(12)
+        left.set_margin_start(12)
+        left.set_margin_end(8)
 
-        # --- Info column ---
-        info_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
-        info_box.set_hexpand(True)
-        info_box.set_valign(Gtk.Align.CENTER)
-        info_box.set_margin_top(8)
-        info_box.set_margin_bottom(8)
+        # Avatar — shows app icon if available, otherwise app name initials
+        avatar = Adw.Avatar(size=48, text=app.get("name", "?"), show_initials=True)
+        icon_name = _resolve_icon(app)
+        if icon_name:
+            avatar.set_icon_name(icon_name)
+        avatar.set_valign(Gtk.Align.CENTER)
+        left.append(avatar)
 
-        name_label = Gtk.Label(label=app.get("name", ""))
-        name_label.add_css_class("heading")
-        name_label.set_xalign(0)
-        info_box.append(name_label)
+        # Info column
+        info = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
+        info.set_hexpand(True)
+        info.set_valign(Gtk.Align.CENTER)
 
-        stars_label = Gtk.Label(label=_star_string(app.get("stars", 0.0)))
-        stars_label.add_css_class("caption")
-        stars_label.set_xalign(0)
-        info_box.append(stars_label)
+        name_lbl = Gtk.Label(label=app.get("name", ""))
+        name_lbl.add_css_class("heading")
+        name_lbl.set_xalign(0)
+        info.append(name_lbl)
 
-        desc_label = Gtk.Label(label=app.get("description", ""))
-        desc_label.add_css_class("caption-heading" if False else "body")
-        desc_label.add_css_class("dim-label")
-        desc_label.set_xalign(0)
-        desc_label.set_wrap(True)
-        desc_label.set_max_width_chars(45)
-        info_box.append(desc_label)
+        desc_lbl = Gtk.Label(label=app.get("description", ""))
+        desc_lbl.add_css_class("caption")
+        desc_lbl.add_css_class("dim-label")
+        desc_lbl.set_xalign(0)
+        desc_lbl.set_wrap(True)
+        desc_lbl.set_max_width_chars(48)
+        info.append(desc_lbl)
 
-        self.append(info_box)
+        # Source availability pills — accent for selected, dim for others
+        if available_sources:
+            pills = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+            pills.set_margin_top(5)
+            for stype, _ in available_sources:
+                lbl = Gtk.Label(label=_SOURCE_LABEL[stype])
+                lbl.add_css_class("caption")
+                if stype == default_source:
+                    lbl.add_css_class("accent")
+                else:
+                    lbl.add_css_class("dim-label")
+                pills.append(lbl)
+            info.append(pills)
+        else:
+            unavail = Gtk.Label(label="Not available for your system")
+            unavail.add_css_class("caption")
+            unavail.add_css_class("error")
+            unavail.set_xalign(0)
+            unavail.set_margin_top(4)
+            info.append(unavail)
 
-        # --- Source selection column ---
-        source_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
-        source_box.set_valign(Gtk.Align.CENTER)
-        source_box.set_margin_end(8)
+        left.append(info)
+        self.append(left)
 
-        source_labels = {"flatpak": "Flatpak", "native": "Native", "snap": "Snap"}
-        available_keys = {s for s, _ in available_sources}
+        # ── Separator ────────────────────────────────────────────────
+        sep = Gtk.Separator(orientation=Gtk.Orientation.VERTICAL)
+        sep.set_margin_top(10)
+        sep.set_margin_bottom(10)
+        self.append(sep)
 
-        self._source_dropdown_model = Gtk.StringList()
-        self._source_dropdown_keys: list[str] = []
+        # ── Right: source selector + install toggle ───────────────────
+        right = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
+        right.set_valign(Gtk.Align.CENTER)
+        right.set_halign(Gtk.Align.CENTER)
+        right.set_margin_top(12)
+        right.set_margin_bottom(12)
+        right.set_margin_start(14)
+        right.set_margin_end(14)
+        right.set_size_request(148, -1)
 
-        for source_type in ("flatpak", "native", "snap"):
-            row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-            label_text = source_labels[source_type]
-            if source_type in available_keys:
-                self._source_dropdown_model.append(label_text)
-                self._source_dropdown_keys.append(source_type)
-                badge = Gtk.Label(label=label_text)
-                badge.add_css_class("caption")
-            else:
-                badge = Gtk.Label(label=f"{label_text} (unavail)")
-                badge.add_css_class("caption")
-                badge.add_css_class("dim-label")
-            row.append(badge)
-            source_box.append(row)
-
-        # Source override dropdown (only shown when >1 source available)
         if len(available_sources) > 1:
-            self._dropdown = Gtk.DropDown(
-                model=self._source_dropdown_model,
-            )
-            self._dropdown.set_tooltip_text("Override install source")
+            model = Gtk.StringList()
+            for stype, _ in available_sources:
+                model.append(_SOURCE_LABEL[stype])
+                self._source_dropdown_keys.append(stype)
+            self._dropdown = Gtk.DropDown(model=model)
+            self._dropdown.set_tooltip_text("Choose installation source")
             if default_source in self._source_dropdown_keys:
                 self._dropdown.set_selected(
                     self._source_dropdown_keys.index(default_source)
                 )
             self._dropdown.connect("notify::selected", self._on_dropdown_changed)
-            source_box.append(self._dropdown)
-        else:
-            self._dropdown = None
+            right.append(self._dropdown)
+        elif available_sources:
+            self._source_dropdown_keys = [available_sources[0][0]]
+            via_lbl = Gtk.Label(
+                label=f"via {_SOURCE_LABEL[available_sources[0][0]]}"
+            )
+            via_lbl.add_css_class("caption")
+            via_lbl.add_css_class("dim-label")
+            right.append(via_lbl)
 
-        self.append(source_box)
+        self._install_btn = Gtk.ToggleButton(label="Add to install")
+        self._install_btn.set_sensitive(bool(available_sources))
+        if available_sources:
+            self._install_btn.add_css_class("suggested-action")
+        self._install_btn.connect("toggled", self._on_install_toggled)
+        right.append(self._install_btn)
 
-        # --- Select checkbox ---
-        self._check = Gtk.CheckButton()
-        self._check.set_valign(Gtk.Align.CENTER)
-        self._check.set_margin_end(8)
-        self._check.set_sensitive(bool(available_sources))
-        self._check.connect("toggled", self._on_check_toggled)
-        self.append(self._check)
+        self.append(right)
 
-    # ------------------------------------------------------------------
-    # Properties
     # ------------------------------------------------------------------
 
     @property
@@ -141,7 +170,7 @@ class AppCard(Gtk.Box):
 
     @property
     def is_selected(self) -> bool:
-        return self._check.get_active()
+        return self._install_btn.get_active()
 
     @property
     def selected_source(self) -> str | None:
@@ -152,15 +181,12 @@ class AppCard(Gtk.Box):
         return self._current_source
 
     def set_selected(self, active: bool) -> None:
-        self._check.set_active(active)
+        self._install_btn.set_active(active)
 
-    # ------------------------------------------------------------------
-    # Signal handlers
-    # ------------------------------------------------------------------
-
-    def _on_check_toggled(self, check: Gtk.CheckButton) -> None:
-        source = self.selected_source or ""
-        self.emit("toggled", self.app_id, source, check.get_active())
+    def _on_install_toggled(self, btn: Gtk.ToggleButton) -> None:
+        active = btn.get_active()
+        btn.set_label("Added ✓" if active else "Add to install")
+        self.emit("toggled", self.app_id, self.selected_source or "", active)
 
     def _on_dropdown_changed(self, dropdown: Gtk.DropDown, _param) -> None:
         idx = dropdown.get_selected()
