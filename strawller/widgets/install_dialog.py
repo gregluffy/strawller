@@ -5,7 +5,7 @@ from __future__ import annotations
 import gi
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Gtk, Adw, Pango
+from gi.repository import Gtk, Adw
 
 from ..installer import InstallerService
 
@@ -75,9 +75,7 @@ class InstallDialog(Adw.Dialog):
         log_view.set_editable(False)
         log_view.set_cursor_visible(False)
         log_view.set_monospace(True)
-        log_view.add_css_class("terminal")
-        font_desc = Pango.FontDescription.from_string("Monospace 9")
-        log_view.override_font(font_desc)
+        log_view.add_css_class("monospace")
         scroll.set_child(log_view)
         expander.set_child(scroll)
         content.append(expander)
