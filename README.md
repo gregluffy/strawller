@@ -55,11 +55,15 @@ sudo dnf install python3-gobject gtk4 libadwaita
 sudo pacman -S python-gobject gtk4 libadwaita
 ```
 
-Install the Python binding:
+The `apt`/`dnf`/`pacman` commands above install the PyGObject binding as a system package (`python3-gi`) — **do not use `pip install PyGObject`** on Ubuntu/Fedora/Arch, as GTK 4 bindings must match the system's GTK version.
 
-```bash
-pip install PyGObject
-```
+> **Optional — running inside a virtualenv:**
+> PyGObject does not install cleanly via pip on most distros. The recommended approach is to let the venv inherit system packages:
+> ```bash
+> python3 -m venv --system-site-packages .venv
+> source .venv/bin/activate
+> pip install pytest   # only pure-Python dev deps go through pip
+> ```
 
 ---
 
