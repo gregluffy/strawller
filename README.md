@@ -73,7 +73,7 @@ The `apt`/`dnf`/`pacman` commands above install the PyGObject binding as a syste
 git clone <repo-url>
 cd strawinstaller
 
-python strawller.py
+python3 strawller.py
 ```
 
 The app detects your distro and available package sources automatically on startup.
@@ -118,7 +118,7 @@ The test suite covers the three core logic modules — **no GTK display required
 
 ```bash
 pip install pytest
-python -m pytest tests/ -v
+python3 -m pytest tests/ -v
 ```
 
 Expected output:
@@ -150,7 +150,7 @@ tests/test_system_probe.py::test_detect_distro_arch                      PASSED
 
 ```
 strawinstaller/
-├── strawller.py                  # Entry point: python strawller.py
+├── strawller.py                  # Entry point: python3 strawller.py
 ├── strawller/
 │   ├── main.py                   # Adw.Application subclass
 │   ├── window.py                 # Main window (NavigationSplitView)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Top-level launcher: python strawller.py"""
+"""Top-level launcher: python3 strawller.py"""
 
 import sys
 import os
