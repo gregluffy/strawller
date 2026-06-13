@@ -143,8 +143,9 @@ class StrawllerWindow(Adw.ApplicationWindow):
         loading_box = Gtk.Box()
         loading_box.set_halign(Gtk.Align.CENTER)
         loading_box.set_valign(Gtk.Align.CENTER)
-        spinner = Adw.Spinner()
+        spinner = Gtk.Spinner()
         spinner.set_size_request(48, 48)
+        spinner.start()
         loading_box.append(spinner)
         self._content_stack.add_named(loading_box, "loading")
 
