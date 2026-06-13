@@ -86,7 +86,7 @@ class PriorityEngine:
         batches: dict = {
             "native": {"pkg_manager": self._native_key(), "packages": []},
             "flatpak": {"packages": []},
-            "snap": {"packages": []},
+            "snap": {"packages": [], "classic": []},
             "unresolved": [],
         }
         for app, override in selections:
@@ -96,7 +96,10 @@ class PriorityEngine:
             elif source_type == "flatpak":
                 batches["flatpak"]["packages"].append(pkg)
             elif source_type == "snap":
-                batches["snap"]["packages"].append(pkg)
+                if app.get("sources", {}).get("snap_classic", False):
+                    batches["snap"]["classic"].append(pkg)
+                else:
+                    batches["snap"]["packages"].append(pkg)
             else:
                 batches["unresolved"].append(app.get("id", "?"))
         return batches

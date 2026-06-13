@@ -97,6 +97,11 @@ class InstallerService:
             cmd = ["snap", "install"] + snap_pkgs
             jobs.append(InstallJob("Snap", cmd))
 
+        snap_classic_pkgs = batches.get("snap", {}).get("classic", [])
+        if snap_classic_pkgs:
+            cmd = ["snap", "install", "--classic"] + snap_classic_pkgs
+            jobs.append(InstallJob("Snap (classic)", cmd))
+
         return jobs
 
     @staticmethod

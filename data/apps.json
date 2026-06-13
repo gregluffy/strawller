@@ -14,7 +14,8 @@
             "dnf": "code",
             "pacman": "visual-studio-code-bin",
             "flatpak": "com.visualstudio.code",
-            "snap": "code"
+            "snap": "code",
+            "snap_classic": true
           }
         },
         {
@@ -83,7 +84,8 @@
             "apt": "nodejs",
             "dnf": "nodejs",
             "pacman": "nodejs",
-            "snap": "node"
+            "snap": "node",
+            "snap_classic": true
           }
         },
         {
@@ -106,7 +108,8 @@
             "apt": "golang",
             "dnf": "golang",
             "pacman": "go",
-            "snap": "go"
+            "snap": "go",
+            "snap_classic": true
           }
         },
         {
@@ -141,7 +144,8 @@
             "apt": "gh",
             "dnf": "gh",
             "pacman": "github-cli",
-            "snap": "gh"
+            "snap": "gh",
+            "snap_classic": true
           }
         },
         {
@@ -174,7 +178,8 @@
           "is_common": false,
           "sources": {
             "flatpak": "com.google.AndroidStudio",
-            "snap": "android-studio"
+            "snap": "android-studio",
+            "snap_classic": true
           }
         },
         {
@@ -229,7 +234,8 @@
             "apt": "lazygit",
             "dnf": "lazygit",
             "pacman": "lazygit",
-            "snap": "lazygit"
+            "snap": "lazygit",
+            "snap_classic": true
           }
         },
         {
@@ -263,7 +269,8 @@
           "icon_name": "cursor",
           "sources": {
             "flatpak": "com.cursor.Cursor",
-            "snap": "cursor"
+            "snap": "cursor",
+            "snap_classic": true
           }
         },
         {
@@ -272,7 +279,8 @@
           "description": "Open source AI coding agent that runs in the terminal.",
           "is_common": false,
           "sources": {
-            "snap": "opencode"
+            "snap": "opencode",
+            "snap_classic": true
           }
         },
         {

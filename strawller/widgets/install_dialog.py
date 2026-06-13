@@ -116,10 +116,7 @@ class InstallDialog(Adw.Dialog):
             on_all_done=self._on_all_done,
         )
 
-        # Pulse all bars while waiting
-        for bar in self._batch_bars.values():
-            bar.pulse()
-
+        self._pulse_source = GLib.timeout_add(100, self._pulse_bars)
         self._service.install(batches)
 
     # ------------------------------------------------------------------
@@ -137,7 +134,21 @@ class InstallDialog(Adw.Dialog):
         snap_pkgs = batches.get("snap", {}).get("packages", [])
         if snap_pkgs:
             result.append(("Snap", snap_pkgs))
+        snap_classic_pkgs = batches.get("snap", {}).get("classic", [])
+        if snap_classic_pkgs:
+            result.append(("Snap (classic)", snap_classic_pkgs))
         return result
+
+    def _pulse_bars(self) -> bool:
+        for bar in self._batch_bars.values():
+            if bar.get_fraction() < 1.0:
+                bar.pulse()
+        return True
+
+    def _stop_pulsing(self) -> None:
+        if self._pulse_source:
+            GLib.source_remove(self._pulse_source)
+            self._pulse_source = None
 
     def _on_output(self, label: str, line: str) -> None:
         end = self._log_buffer.get_end_iter()
@@ -153,12 +164,14 @@ class InstallDialog(Adw.Dialog):
         self._log_buffer.insert(end, f"--- {label} {status} ---\n")
 
     def _on_all_done(self, unresolved: list[str]) -> None:
+        self._stop_pulsing()
         self._cancel_btn.set_sensitive(False)
         self._close_btn.set_sensitive(True)
         end = self._log_buffer.get_end_iter()
         self._log_buffer.insert(end, "\nAll done.\n")
 
     def _on_cancel(self, _btn) -> None:
+        self._stop_pulsing()
         self._service.cancel_all()
         self._cancel_btn.set_sensitive(False)
         self._close_btn.set_sensitive(True)
