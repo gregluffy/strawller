@@ -179,6 +179,11 @@ class StrawllerWindow(Adw.ApplicationWindow):
         self._install_btn.connect("clicked", self._on_install_clicked)
         action_bar.pack_start(self._install_btn)
 
+        self._unselect_btn = Gtk.Button(label="Unselect All")
+        self._unselect_btn.set_sensitive(False)
+        self._unselect_btn.connect("clicked", self._on_unselect_all)
+        action_bar.pack_start(self._unselect_btn)
+
         export_btn = Gtk.Button(label="Export Profile")
         export_btn.connect("clicked", self._on_export_clicked)
         action_bar.pack_end(export_btn)
@@ -295,6 +300,7 @@ class StrawllerWindow(Adw.ApplicationWindow):
         count = len(self._selections)
         self._install_btn.set_label(f"Install Selected ({count})")
         self._install_btn.set_sensitive(count > 0)
+        self._unselect_btn.set_sensitive(count > 0)
 
     # ------------------------------------------------------------------
     # Signal handlers
@@ -323,6 +329,12 @@ class StrawllerWindow(Adw.ApplicationWindow):
             self._selections[app_id] = source or None
         else:
             self._selections.pop(app_id, None)
+        self._update_install_button()
+
+    def _on_unselect_all(self, _btn) -> None:
+        self._selections.clear()
+        for card in self._cards:
+            card.set_selected(False)
         self._update_install_button()
 
     def _on_install_clicked(self, _btn) -> None:

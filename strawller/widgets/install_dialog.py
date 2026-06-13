@@ -23,6 +23,7 @@ class InstallDialog(Adw.Dialog):
         self._batch_bars: dict[str, Gtk.ProgressBar] = {}
         self._done_count = 0
         self._total_jobs = 0
+        self._failed_count = 0
         self._log_buffer = Gtk.TextBuffer()
 
         root = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -61,6 +62,37 @@ class InstallDialog(Adw.Dialog):
             progress_group.add(row)
 
         content.append(progress_group)
+
+        # Status result banner (hidden until install/cancel finishes)
+        self._status_revealer = Gtk.Revealer()
+        self._status_revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_DOWN)
+        self._status_revealer.set_transition_duration(250)
+
+        status_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        status_box.set_margin_top(4)
+        status_box.set_margin_bottom(4)
+        status_box.set_margin_start(8)
+        status_box.set_margin_end(8)
+        status_box.set_valign(Gtk.Align.CENTER)
+        status_box.add_css_class("card")
+
+        self._status_icon = Gtk.Image()
+        self._status_icon.set_pixel_size(24)
+        self._status_icon.set_margin_top(12)
+        self._status_icon.set_margin_bottom(12)
+        self._status_icon.set_margin_start(12)
+        status_box.append(self._status_icon)
+
+        self._status_label = Gtk.Label()
+        self._status_label.set_xalign(0)
+        self._status_label.set_wrap(True)
+        self._status_label.set_margin_top(12)
+        self._status_label.set_margin_bottom(12)
+        self._status_label.set_margin_end(12)
+        status_box.append(self._status_label)
+
+        self._status_revealer.set_child(status_box)
+        content.append(self._status_revealer)
 
         # Log expander
         expander = Gtk.Expander(label="Show terminal output")
@@ -159,6 +191,8 @@ class InstallDialog(Adw.Dialog):
         if bar:
             bar.set_fraction(1.0)
         self._done_count += 1
+        if returncode != 0:
+            self._failed_count += 1
         status = "✓" if returncode == 0 else f"✗ (exit {returncode})"
         end = self._log_buffer.get_end_iter()
         self._log_buffer.insert(end, f"--- {label} {status} ---\n")
@@ -170,8 +204,33 @@ class InstallDialog(Adw.Dialog):
         end = self._log_buffer.get_end_iter()
         self._log_buffer.insert(end, "\nAll done.\n")
 
+        succeeded = self._total_jobs - self._failed_count
+        if self._failed_count == 0:
+            self._status_icon.set_from_icon_name("emblem-ok-symbolic")
+            self._status_icon.add_css_class("success")
+            if unresolved:
+                self._status_label.set_text(
+                    f"All {succeeded} batch{'es' if succeeded != 1 else ''} installed successfully. "
+                    f"{len(unresolved)} app{'s' if len(unresolved) != 1 else ''} could not be resolved."
+                )
+            else:
+                self._status_label.set_text(
+                    f"All {succeeded} batch{'es' if succeeded != 1 else ''} installed successfully."
+                )
+        else:
+            self._status_icon.set_from_icon_name("dialog-warning-symbolic")
+            self._status_icon.add_css_class("warning")
+            self._status_label.set_text(
+                f"{succeeded} of {self._total_jobs} batches completed. "
+                f"{self._failed_count} failed — check the terminal output for details."
+            )
+        self._status_revealer.set_reveal_child(True)
+
     def _on_cancel(self, _btn) -> None:
         self._stop_pulsing()
         self._service.cancel_all()
         self._cancel_btn.set_sensitive(False)
         self._close_btn.set_sensitive(True)
+        self._status_icon.set_from_icon_name("dialog-information-symbolic")
+        self._status_label.set_text("Installation was cancelled.")
+        self._status_revealer.set_reveal_child(True)
